@@ -1,0 +1,10 @@
+.viewports {
+	display: inline-block;
+	width: 1000px;
+}
+
+.viewport {
+	display: inline-block;
+	width: 480px; height: 480px;
+	margin: 10px 10px 10px 10px;
+}
