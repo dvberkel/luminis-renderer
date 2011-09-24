@@ -18,7 +18,7 @@
 			
 			var v0 = Vector.create([0,0]);
 			var v1 = Vector.create([1,0]);
-			
+				
 			var Scene2D = function() {
 				this.elements = [];
 				
@@ -27,10 +27,29 @@
 					return this;			
 				}
 			}
+		
+			var Scene3D = function() {
+				this.elements = [];
+				
+				this.add = function(element) {
+					this.elements.push(element);
+					return this;
+				}
+				
+				this.transform = function(transformation) {
+					var scene2D = new Scene2D();
+					for (var i = 0; i < this.elements.length; i++) {
+						scene2D.add(transformation(this.elements[i]));
+					}
+					return scene2D;
+				}
+			}
 			
-			var xyScene2D = new Scene2D().add(Vector.create([0,0])).add(Vector.create([1,0]));
-			var xzScene2D = new Scene2D().add(Vector.create([0,0])).add(Vector.create([1,0]));
-			var yzScene2D = new Scene2D().add(Vector.create([0,0])).add(Vector.create([0,0]));
+			var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
+			
+			var xyScene2D = scene.transform(function(v){return Vector.create([v.e(1),v.e(2)]);});
+			var xzScene2D = scene.transform(function(v){return Vector.create([v.e(1),v.e(3)]);});
+			var yzScene2D = scene.transform(function(v){return Vector.create([v.e(2),v.e(3)]);});
 			
 			var viewportTransform = function(scale, center) {
 				return function(v) {return v.x(scale).add(center);};
