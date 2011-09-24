@@ -26,7 +26,7 @@
 		<script type="text/javascript">
 			$(function(){
 				var os = [
-					{id: "xy", axis: true, points: [v0, v1], viewport: viewportTransform(70,center)}, 
+					{id: "xy", axis: true, scene: [v0, v1], viewport: viewportTransform(70,center)}, 
 					{id: "xz", axis: true},
 					{id: "yz", axis: true},
 					{id: "xyz", axis: false}
@@ -41,9 +41,9 @@
 						paper.path("M0 240L480 240").attr({stroke: 'gray'});
 					}
 					
-					if (o.points) {
-						for (var i = 0; i < o.points.length; i++) {
-							var point = o.viewport(o.points[i]);
+					if (o.scene) {
+						for (var i = 0; i < o.scene.length; i++) {
+							var point = o.viewport(o.scene[i]);
 							paper.circle(point.e(1),point.e(2),3).attr({fill: 'black', stroke: 'black'});
 						}
 					}
