@@ -48,7 +48,8 @@
 			var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
 			var projection = function(m) {
-				return function(v) {return m.multiply(v);};
+				var matrix = Matrix.create(m);
+				return function(v) {return matrix.multiply(v);};
 			}
 			
 			var viewportTransform = function(scale, center) {
@@ -58,9 +59,9 @@
 		<script type="text/javascript">
 			$(function(){
 				var os = [
-					{id: "xy", axis: true, projection: projection(Matrix.create([[1,0,0],[0,1,0]])), viewport: viewportTransform(70,center)}, 
-					{id: "xz", axis: true, projection: projection(Matrix.create([[1,0,0],[0,0,1]])), viewport: viewportTransform(70,center)},
-					{id: "yz", axis: true, projection: projection(Matrix.create([[0,1,0],[0,0,1]])), viewport: viewportTransform(70,center)},
+					{id: "xy", axis: true, projection: projection([[1,0,0],[0,1,0]]), viewport: viewportTransform(70,center)}, 
+					{id: "xz", axis: true, projection: projection([[1,0,0],[0,0,1]]), viewport: viewportTransform(70,center)},
+					{id: "yz", axis: true, projection: projection([[0,1,0],[0,0,1]]), viewport: viewportTransform(70,center)},
 					{id: "xyz", axis: false, viewport: viewportTransform(70,center)}
 				];
 				
