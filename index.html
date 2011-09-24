@@ -19,16 +19,16 @@
 			var v0 = Vector.create([0,0]);
 			var v1 = Vector.create([1,0]);
 				
-			var Scene2D = function() {
-				this.elements = [];
-				
-				this.add = function(element) {
-					this.elements.push(element);
-					return this;			
-				}
-			}
-		
 			var Scene3D = function() {
+				var Scene2D = function() {
+					this.elements = [];
+				
+					this.add = function(element) {
+						this.elements.push(element);
+						return this;			
+					}
+				}
+		
 				this.elements = [];
 				
 				this.add = function(element) {
