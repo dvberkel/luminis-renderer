@@ -27,9 +27,9 @@
 			$(function(){
 				var os = [
 					{id: "xy", axis: true, scene: [v0, v1], viewport: viewportTransform(70,center)}, 
-					{id: "xz", axis: true},
-					{id: "yz", axis: true},
-					{id: "xyz", axis: false}
+					{id: "xz", axis: true, viewport: viewportTransform(70,center)},
+					{id: "yz", axis: true, viewport: viewportTransform(70,center)},
+					{id: "xyz", axis: false, viewport: viewportTransform(70,center)}
 				];
 				
 				for (var index = 0; index < os.length; index++) {
