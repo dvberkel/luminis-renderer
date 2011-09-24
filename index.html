@@ -5,8 +5,20 @@
 		<title>Luminis &raquo; Renderer Prototype</title>
 		<script src="js/jquery-1.6.4.min.js"></script>
 		<script src="js/raphael-min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var ids = ["xy", "xz", "yz", "xyz"];
+				for (var index = 0; index < ids.length; index++) {
+					var paper = Raphael(ids[index], 480, 480);
+					paper.rect(0,0,480,480).attr({fill: "none", stroke: "black"});
+				}
+			});
+		</script>
 	</head>
 	<body>
 		<h1>Renderer Prototype</h1>
+		<div id="viewports">
+			<div id="xy"/><div id="xz"/><div id="yz"/><div id="xyz"/>
+		</div>
 	</body>
 </html>
