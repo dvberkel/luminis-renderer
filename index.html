@@ -13,9 +13,21 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
-				var os = [{id: "xy"}, {id: "xz"}, {id: "yz"}, {id: "xyz"}];
+				var os = [
+					{id: "xy", axis: true}, 
+					{id: "xz", axis: true},
+					{id: "yz", axis: true},
+					{id: "xyz", axis: false}
+				];
+				
 				for (var index = 0; index < os.length; index++) {
-					var paper = Raphael(os[index].id, 480, 480);
+					var o = os[index];
+					var paper = Raphael(o.id, 480, 480);
+					
+					if (o.axis) {
+						paper.path("M240 0L240 480").attr({stroke: 'gray'});
+						paper.path("M0 240L480 240").attr({stroke: 'gray'});
+					}
 				}
 			});
 		</script>
