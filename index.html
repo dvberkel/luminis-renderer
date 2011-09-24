@@ -13,9 +13,9 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
-				var ids = ["xy", "xz", "yz", "xyz"];
-				for (var index = 0; index < ids.length; index++) {
-					var paper = Raphael(ids[index], 480, 480);
+				var os = [{id: "xy"}, {id: "xz"}, {id: "yz"}, {id: "xyz"}];
+				for (var index = 0; index < os.length; index++) {
+					var paper = Raphael(os[index].id, 480, 480);
 				}
 			});
 		</script>
