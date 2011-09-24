@@ -50,10 +50,6 @@
 			var projection = function(m) {
 				return function(v) {return m.multiply(v);};
 			}
-		
-			var xyScene2D = scene.transform(projection(Matrix.create([[1,0,0],[0,1,0]])));
-			var xzScene2D = scene.transform(projection(Matrix.create([[1,0,0],[0,0,1]])));
-			var yzScene2D = scene.transform(projection(Matrix.create([[0,1,0],[0,0,1]])));
 			
 			var viewportTransform = function(scale, center) {
 				return function(v) {return v.x(scale).add(center);};
@@ -62,9 +58,9 @@
 		<script type="text/javascript">
 			$(function(){
 				var os = [
-					{id: "xy", axis: true, scene: xyScene2D, viewport: viewportTransform(70,center)}, 
-					{id: "xz", axis: true, scene: xzScene2D, viewport: viewportTransform(70,center)},
-					{id: "yz", axis: true, scene: yzScene2D, viewport: viewportTransform(70,center)},
+					{id: "xy", axis: true, projection: projection(Matrix.create([[1,0,0],[0,1,0]])), viewport: viewportTransform(70,center)}, 
+					{id: "xz", axis: true, projection: projection(Matrix.create([[1,0,0],[0,0,1]])), viewport: viewportTransform(70,center)},
+					{id: "yz", axis: true, projection: projection(Matrix.create([[0,1,0],[0,0,1]])), viewport: viewportTransform(70,center)},
 					{id: "xyz", axis: false, viewport: viewportTransform(70,center)}
 				];
 				
@@ -77,8 +73,9 @@
 						paper.path("M0 240L480 240").attr({stroke: 'gray'});
 					}
 					
-					if (o.scene) {
-						var sceneElements = o.scene.elements
+					if (o.projection) {
+						var scene2D = scene.transform(o.projection);
+						var sceneElements = scene2D.elements
 						for (var i = 0; i < sceneElements.length; i++) {
 							var point = o.viewport(sceneElements[i]);
 							paper.circle(point.e(1),point.e(2),3).attr({fill: 'black', stroke: 'black'});
