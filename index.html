@@ -29,6 +29,8 @@
 			}
 			
 			var xyScene2D = new Scene2D().add(Vector.create([0,0])).add(Vector.create([1,0]));
+			var xzScene2D = new Scene2D().add(Vector.create([0,0])).add(Vector.create([1,0]));
+			var yzScene2D = new Scene2D().add(Vector.create([0,0])).add(Vector.create([0,0]));
 			
 			var viewportTransform = function(scale, center) {
 				return function(v) {return v.x(scale).add(center);};
@@ -38,8 +40,8 @@
 			$(function(){
 				var os = [
 					{id: "xy", axis: true, scene: xyScene2D, viewport: viewportTransform(70,center)}, 
-					{id: "xz", axis: true, viewport: viewportTransform(70,center)},
-					{id: "yz", axis: true, viewport: viewportTransform(70,center)},
+					{id: "xz", axis: true, scene: xzScene2D, viewport: viewportTransform(70,center)},
+					{id: "yz", axis: true, scene: yzScene2D, viewport: viewportTransform(70,center)},
 					{id: "xyz", axis: false, viewport: viewportTransform(70,center)}
 				];
 				
