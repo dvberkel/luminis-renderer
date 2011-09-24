@@ -12,10 +12,17 @@
 				$("#viewports").addClass("viewports").children().addClass("viewport");
 			});
 		</script>
+		<script>
+			var scale = 70;
+			var center = Vector.create([240,240]);
+			
+			var v0 = Vector.create([0,0]).x(scale).add(center);
+			var v1 = Vector.create([1,0]).x(scale).add(center);
+		</script>
 		<script type="text/javascript">
 			$(function(){
 				var os = [
-					{id: "xy", axis: true}, 
+					{id: "xy", axis: true, points: [v0, v1]}, 
 					{id: "xz", axis: true},
 					{id: "yz", axis: true},
 					{id: "xyz", axis: false}
@@ -28,6 +35,13 @@
 					if (o.axis) {
 						paper.path("M240 0L240 480").attr({stroke: 'gray'});
 						paper.path("M0 240L480 240").attr({stroke: 'gray'});
+					}
+					
+					if (o.points) {
+						for (var i = 0; i < o.points.length; i++) {
+							var point = o.points[i];
+							paper.circle(point.e(1),point.e(2),3).attr({fill: 'black', stroke: 'black'});
+						}
 					}
 				}
 			});
