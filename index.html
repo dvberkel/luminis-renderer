@@ -19,6 +19,17 @@
 			var v0 = Vector.create([0,0]);
 			var v1 = Vector.create([1,0]);
 			
+			var Scene2D = function() {
+				this.elements = [];
+				
+				this.add = function(element) {
+					this.elements.push(element);
+					return this;			
+				}
+			}
+			
+			var xyScene2D = new Scene2D().add(Vector.create([0,0])).add(Vector.create([1,0]));
+			
 			var viewportTransform = function(scale, center) {
 				return function(v) {return v.x(scale).add(center);};
 			}
@@ -26,7 +37,7 @@
 		<script type="text/javascript">
 			$(function(){
 				var os = [
-					{id: "xy", axis: true, scene: [v0, v1], viewport: viewportTransform(70,center)}, 
+					{id: "xy", axis: true, scene: xyScene2D, viewport: viewportTransform(70,center)}, 
 					{id: "xz", axis: true, viewport: viewportTransform(70,center)},
 					{id: "yz", axis: true, viewport: viewportTransform(70,center)},
 					{id: "xyz", axis: false, viewport: viewportTransform(70,center)}
@@ -42,8 +53,9 @@
 					}
 					
 					if (o.scene) {
-						for (var i = 0; i < o.scene.length; i++) {
-							var point = o.viewport(o.scene[i]);
+						var sceneElements = o.scene.elements
+						for (var i = 0; i < sceneElements.length; i++) {
+							var point = o.viewport(sceneElements[i]);
 							paper.circle(point.e(1),point.e(2),3).attr({fill: 'black', stroke: 'black'});
 						}
 					}
