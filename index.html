@@ -46,10 +46,14 @@
 			}
 			
 			var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
-			
-			var xyScene2D = scene.transform(function(v){return Vector.create([v.e(1),v.e(2)]);});
-			var xzScene2D = scene.transform(function(v){return Vector.create([v.e(1),v.e(3)]);});
-			var yzScene2D = scene.transform(function(v){return Vector.create([v.e(2),v.e(3)]);});
+				
+			var matrixTransformation = function(m) {
+				return function(v) {return m.multiply(v);};
+			}
+		
+			var xyScene2D = scene.transform(matrixTransformation(Matrix.create([[1,0,0],[0,1,0]])));
+			var xzScene2D = scene.transform(matrixTransformation(Matrix.create([[1,0,0],[0,0,1]])));
+			var yzScene2D = scene.transform(matrixTransformation(Matrix.create([[0,1,0],[0,0,1]])));
 			
 			var viewportTransform = function(scale, center) {
 				return function(v) {return v.x(scale).add(center);};
