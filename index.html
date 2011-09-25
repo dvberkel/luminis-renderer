@@ -67,7 +67,12 @@
 					url: url,
 					dataType: "xml",
 					success: function(data) {
-						console.log("received data: " + data);
+						$(data).find("sample").each(function(){
+							var sample = $(this);
+							var aName = sample.find('name').text();
+							var scene = sample.find('scene').text();
+							$('#sample').append("<option value='" + scene + "'>" + aName + "</option>");
+						});
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
 						feedback("unable to load: " + url);
