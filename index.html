@@ -14,12 +14,22 @@
 		<script type="text/javascript">
 			$(function(){
 				$("#feedback").addClass("feedback").hide();
-				$("#scene").addClass("scene");
 				$("#viewports").addClass("viewports").children().addClass("viewport");
 				
 				$("#sample").addClass("sample").change(function(){
-					$("#scene").val($(this).val());
+					$("#scene").val($(this).val()).change();
 				}).change();
+				$("#scene").addClass("scene").change(function(){
+					if (sceneParser) {
+						if (renderer) {
+							var scene = sceneParser.parse($(this).val());
+						} else {
+							feedback("Unable to use renderer");
+						}
+					} else {
+						feedback("Unable to use sceneParser");
+					};
+				});
 			});
 		</script>
 		<script type="text/javascript">
@@ -46,6 +56,7 @@
 			});
 		</script>
 		<script type="text/javascript">
+			var renderer;
 			$(function(){
 				var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
@@ -58,7 +69,7 @@
 					{id: "xyz", axis: false, size: 480, viewport: viewport}
 				];
 				
-				var renderer = new SceneRenderer(options);
+				renderer = new SceneRenderer(options);
 				renderer.render(scene);
 			});
 		</script>
