@@ -13,12 +13,6 @@
 			});
 		</script>
 		<script>
-			var scale = 70;
-			var center = Vector.create([240,240]);
-			
-			var v0 = Vector.create([0,0]);
-			var v1 = Vector.create([1,0]);
-				
 			var Scene3D = function() {
 				var Scene2D = function() {
 					this.elements = [];
@@ -38,8 +32,6 @@
 					return scene2D;
 				}
 			}
-			
-			var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
 			var projection = function(m) {
 				var matrix = Matrix.create(m);
@@ -75,6 +67,14 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
+				var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
+				
+				var scale = 70;
+				var center = Vector.create([240,240]);
+			
+				var v0 = Vector.create([0,0]);
+				var v1 = Vector.create([1,0]);
+
 				var options = [
 					{id: "xy", axis: true, projection: projection([[1,0,0],[0,1,0]]), viewport: viewportTransform(70,center)}, 
 					{id: "xz", axis: true, projection: projection([[1,0,0],[0,0,1]]), viewport: viewportTransform(70,center)},
