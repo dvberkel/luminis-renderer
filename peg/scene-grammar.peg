@@ -1,0 +1,39 @@
+{
+	var Scene3D = Scene3D || function() {
+		this.elements = [];
+		this.add = function(vector) {this.elements.push(vector);}
+	}
+	var Vector = Vector || {create: function(data) {return data;}}
+}
+
+start = sceneBlock
+
+sceneBlock = "(" scene:scene ")" {
+	var scene3D = new Scene3D();
+	for(var i = 0; i < scene.length; i++) {
+		scene3D.add(scene[i]);
+	} 
+	return scene3D;
+}
+
+scene = sceneKey whitespace* block:elementsBlock {return block;}
+
+sceneKey = "scene"
+
+elementsBlock = "[" elements:elements "]" {return elements;}
+
+elements = whitespace* head:elementBlock whitespace* "," tail:elements {return [head].concat(tail);}
+         / whitespace* v:elementBlock whitespace* {return [v];}
+
+elementBlock = "(" element:element ")" {return Vector.create(element);}
+
+element = head:number "," tail:element {return [head].concat(tail);}
+        / n:number {return [n];}
+
+number = integer:[0-9]* point:"." fraction:[0-9]+ {return Number(integer.join("") + point + fraction.join(""))}
+       / integer:[0-9]+ {return Number(integer.join(""));}
+       
+
+whitespace = " "
+           / "\t"
+           / "\n"
