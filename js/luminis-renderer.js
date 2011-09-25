@@ -31,11 +31,11 @@ var SceneRenderer = function(options) {
 	this.render = function(scene) {
 		for (var index = 0; index < options.length; index++) {
 			var option = options[index];
-			var paper = Raphael(option.id, 480, 480);
+			var paper = Raphael(option.id, option.size, option.size);
 		
 			if (option.axis) {
-				paper.path("M240 0L240 480").attr({stroke: 'gray'});
-				paper.path("M0 240L480 240").attr({stroke: 'gray'});
+				paper.path(verticalAxis(option.size)).attr({stroke: 'gray'});
+				paper.path(horizontalAxis(option.size)).attr({stroke: 'gray'});
 			}
 		
 			if (option.projection) {
@@ -47,5 +47,17 @@ var SceneRenderer = function(options) {
 				}
 			}
 		}
+	}
+	
+	var horizontalAxis = function(size) {
+		return axis(0, size/2, size, size/2);
+	}
+	
+	var axis = function(x0, y0, x1, y1) {
+		return "M" + x0 + " " + y0 + "L" + x1 + " " + y1;
+	}
+	
+	var verticalAxis = function(size) {
+		return axis(size/2, 0, size/2, size);
 	}
 }
