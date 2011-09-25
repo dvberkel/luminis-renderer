@@ -52,15 +52,15 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
-				var os = [
+				var options = [
 					{id: "xy", axis: true, projection: projection([[1,0,0],[0,1,0]]), viewport: viewportTransform(70,center)}, 
 					{id: "xz", axis: true, projection: projection([[1,0,0],[0,0,1]]), viewport: viewportTransform(70,center)},
 					{id: "yz", axis: true, projection: projection([[0,1,0],[0,0,1]]), viewport: viewportTransform(70,center)},
 					{id: "xyz", axis: false, viewport: viewportTransform(70,center)}
 				];
 				
-				for (var index = 0; index < os.length; index++) {
-					var o = os[index];
+				for (var index = 0; index < options.length; index++) {
+					var o = options[index];
 					var paper = Raphael(o.id, 480, 480);
 					
 					if (o.axis) {
