@@ -1,0 +1,6 @@
+.feedback {
+	width: 1000px;
+	background: rgba(255,0,0,0.3);
+	border-style: solid; border-color: rgb(255,0,0); border-width: 1px;
+	margin: 0 0 5px 0;
+}
