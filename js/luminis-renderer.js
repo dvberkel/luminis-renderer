@@ -39,10 +39,11 @@ var SceneRenderer = function(options) {
 			}
 		
 			if (option.projection) {
+				var viewport = option.viewport;
 				var scene2D = scene.transform(option.projection);
 				var sceneElements = scene2D.elements
 				for (var i = 0; i < sceneElements.length; i++) {
-					var point = option.viewport(sceneElements[i]);
+					var point = viewport(sceneElements[i]);
 					paper.circle(point.e(1),point.e(2),3).attr({fill: 'black', stroke: 'black'});
 				}
 			}
