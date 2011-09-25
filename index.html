@@ -13,7 +13,7 @@
 		<script src="js/luminis-renderer.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$("#feedback").addClass("feedback");
+				$("#feedback").addClass("feedback").hide();
 				$("#scene").addClass("scene");
 				$("#viewports").addClass("viewports").children().addClass("viewport");
 			});
@@ -56,7 +56,7 @@
 	<body>
 		<h1>Renderer Prototype</h1>
 		<div id="feedback">
-			<ul><li>Example</li></ul>
+			<ul></ul>
 		</div>
 		<div>
 			<textarea id="scene"></textarea>
