@@ -26,7 +26,12 @@
 					url: url,
 					dataType: "text",
 					success: function(data){
-						sceneParser = PEG.buildParser(data);
+						try {
+							sceneParser = PEG.buildParser(data);
+						} catch (e) {
+							var msg = "Unable to parse " + url;
+							$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
+						}
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						var msg = "Unable to load " + url;
