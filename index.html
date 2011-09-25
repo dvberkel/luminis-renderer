@@ -14,7 +14,7 @@
 		<script type="text/javascript">
 			$(function(){
 				$("#feedback").addClass("feedback").hide();
-				$("#scene").addClass("scene");
+				$("#sample").addClass("sample"); $("#scene").addClass("scene");
 				$("#viewports").addClass("viewports").children().addClass("viewport");
 			});
 		</script>
@@ -65,6 +65,9 @@
 			<ul></ul>
 		</div>
 		<div>
+			<select id="sample">
+				<option>Example</option>
+			</select>
 			<textarea id="scene"></textarea>
 		</div>
 		<div id="viewports">
