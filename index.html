@@ -14,26 +14,9 @@
 		<script type="text/javascript">
 			$(function(){
 				$("#feedback").addClass("feedback").hide();
+				$("#sample").addClass("sample");
+				$("#scene").addClass("scene");
 				$("#viewports").addClass("viewports").children().addClass("viewport");
-				
-				$("#sample").addClass("sample").change(function(){
-					$("#scene").val($(this).val()).change();
-				}).change();
-				$("#scene").addClass("scene").change(function(){
-					if (sceneParser) {
-						if (renderer) {
-							try {
-								var scene = sceneParser.parse($(this).val());
-							} catch(e) {
-								feedback("Error parsing sample: " + e.message);
-							}
-						} else {
-							feedback("Unable to use renderer");
-						}
-					} else {
-						feedback("Unable to use sceneParser");
-					};
-				});
 			});
 		</script>
 		<script type="text/javascript">
@@ -75,6 +58,28 @@
 				
 				renderer = new SceneRenderer(options);
 				renderer.render(scene);
+			});
+		</script>
+		<script type="text/javascript">
+			$(function(){				
+				$("#sample").change(function(){
+					$("#scene").val($(this).val()).change();
+				}).change();
+				$("#scene").change(function(){
+					if (sceneParser) {
+						if (renderer) {
+							try {
+								var scene = sceneParser.parse($(this).val());
+							} catch(e) {
+								feedback("Error parsing sample: " + e.message);
+							}
+						} else {
+							feedback("Unable to use renderer");
+						}
+					} else {
+						feedback("Unable to use sceneParser");
+					};
+				});
 			});
 		</script>
 	</head>
