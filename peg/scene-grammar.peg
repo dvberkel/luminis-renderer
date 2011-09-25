@@ -22,9 +22,12 @@ elementBlock = "(" element:element ")" {return Vector.create(element);}
 element = head:number "," tail:element {return [head].concat(tail);}
         / n:number {return [n];}
 
-number = integer:[0-9]* point:"." fraction:[0-9]+ {return Number(integer.join("") + point + fraction.join(""))}
-       / integer:[0-9]+ {return Number(integer.join(""));}
+
+number = sign:sign integer:[0-9]* point:"." fraction:[0-9]+ {return Number(sign + integer.join("") + point + fraction.join(""))}
+       / sign:sign integer:[0-9]+ {return Number(sign + integer.join(""));}
        
+sign = "-"
+     / ""
 
 whitespace = " "
            / "\t"
