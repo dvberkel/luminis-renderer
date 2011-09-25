@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<samples>
+	<sample>
+		<name>Default</name>
+		<scene>(scene [(0,0,0),(1,0,0)])</scene>
+	</sample>
+	<sample>
+		<name>Exotic</name>
+		<scene>(scene [(0,0,0),(1,1,0)])</scene>
+	</sample>
+</samples>
