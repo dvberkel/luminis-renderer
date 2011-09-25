@@ -20,7 +20,7 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
-				var url = 'peg/scene-grammar.peg'
+				var url = 'peg/scene-grammer.peg'
 				$.ajax({
 					url: url,
 					dataType: "text",
@@ -28,9 +28,9 @@
 						console.log("received data");
 						console.log(data);
 					},
-					error: function(data){
-						console.log("unable to load " + url);
-						console.log(data);
+					error: function(jqXHR, textStatus, errorThrown){
+						var msg = "Unable to load " + url;
+						$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
 					}
 				});
 			});
