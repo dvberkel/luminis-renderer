@@ -81,6 +81,7 @@
 						feedback("Unable to use sceneParser");
 					};
 				});
+				$("#sample option:first").attr('selected', true);
 			});
 		</script>
 	</head>
@@ -91,7 +92,7 @@
 		</div>
 		<div>
 			<select id="sample">
-				<option value="(scene [(0,0,0), (1,0,0)])" selected="true">Default</option>
+				<option value="(scene [(0,0,0), (1,0,0)])">Default</option>
 				<option value="(scene [(0,0,0), (1,1,0)])">Exotic</option>
 			</select>
 			<textarea id="scene"></textarea>
