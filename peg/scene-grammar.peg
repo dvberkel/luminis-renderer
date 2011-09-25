@@ -6,7 +6,7 @@
 	var Vector = Vector || {create: function(data) {return data;}}
 }
 
-start = sceneBlock null
+start = sceneBlock
 
 sceneBlock = "(" scene:scene ")" {
 	var scene3D = new Scene3D();
