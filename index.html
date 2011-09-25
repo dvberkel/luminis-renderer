@@ -16,6 +16,10 @@
 				$("#feedback").addClass("feedback").hide();
 				$("#sample").addClass("sample"); $("#scene").addClass("scene");
 				$("#viewports").addClass("viewports").children().addClass("viewport");
+				
+				$("#sample").change(function(){
+					console.log("option changed");
+				});
 			});
 		</script>
 		<script type="text/javascript">
@@ -66,7 +70,8 @@
 		</div>
 		<div>
 			<select id="sample">
-				<option>Example</option>
+				<option>Example 1</option>
+				<option>Example 2</option>
 			</select>
 			<textarea id="scene"></textarea>
 		</div>
