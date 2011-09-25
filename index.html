@@ -18,7 +18,7 @@
 				$("#viewports").addClass("viewports").children().addClass("viewport");
 				
 				$("#sample").change(function(){
-					console.log("option changed");
+					$("#scene").val($(this).val());
 				});
 			});
 		</script>
@@ -70,8 +70,8 @@
 		</div>
 		<div>
 			<select id="sample">
-				<option>Example 1</option>
-				<option>Example 2</option>
+				<option value="(scene [(0,0,0), (1,0,0)])">Default</option>
+				<option value="(scene [(0,0,0), (1,1,0)])">Exotic</option>
 			</select>
 			<textarea id="scene"></textarea>
 		</div>
