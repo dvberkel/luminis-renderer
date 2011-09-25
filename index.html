@@ -67,12 +67,14 @@
 					url: url,
 					dataType: "xml",
 					success: function(data) {
+						$("#sample").empty();
 						$(data).find("sample").each(function(){
 							var sample = $(this);
 							var aName = sample.find('name').text();
 							var scene = sample.find('scene').text();
-							$('#sample').append("<option value='" + scene + "'>" + aName + "</option>");
+							$("#sample").append("<option value='" + scene + "'>" + aName + "</option>");
 						});
+						$("#sample option:first").attr('selected', true).change();
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
 						feedback("unable to load: " + url);
@@ -98,7 +100,6 @@
 						feedback("Unable to use sceneParser");
 					};
 				});
-				$("#sample option:first").attr('selected', true);
 			});
 		</script>
 	</head>
@@ -108,10 +109,7 @@
 			<ul></ul>
 		</div>
 		<div>
-			<select id="sample">
-				<option value="(scene [(0,0,0), (1,0,0)])">Default</option>
-				<option value="(scene [(0,0,0), (1,1,0)])">Exotic</option>
-			</select>
+			<select id="sample"></select>
 			<textarea id="scene"></textarea>
 		</div>
 		<div id="viewports">
