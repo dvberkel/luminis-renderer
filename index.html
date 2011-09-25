@@ -32,13 +32,11 @@
 						try {
 							sceneParser = PEG.buildParser(data);
 						} catch (e) {
-							var msg = "Unable to parse " + url;
-							feedback(msg);
+							feedback("Unable to parse " + url + ": " + e.message);
 						}
 					},
 					error: function(jqXHR, textStatus, errorThrown){
-						var msg = "Unable to load " + url;
-						feedback(msg);
+						feedback("Unable to load " + url);
 					}
 				});
 			});
