@@ -70,6 +70,7 @@
 						if (renderer) {
 							try {
 								var scene = sceneParser.parse($(this).val());
+								renderer.render(scene);
 							} catch(e) {
 								feedback("Error parsing sample: " + e.message);
 							}

@@ -1,11 +1,3 @@
-{
-	var Scene3D = Scene3D || function() {
-		this.elements = [];
-		this.add = function(vector) {this.elements.push(vector);}
-	}
-	var Vector = Vector || {create: function(data) {return data;}}
-}
-
 start = sceneBlock
 
 sceneBlock = "(" scene:scene ")" {
