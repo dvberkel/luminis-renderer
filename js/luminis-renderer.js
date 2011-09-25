@@ -31,7 +31,14 @@ var SceneRenderer = function(options) {
 	this.render = function(scene) {
 		for (var index = 0; index < options.length; index++) {
 			var option = options[index];
-			var paper = Raphael(option.id, option.size, option.size);
+			var paper;
+			if (option.paper) {
+				paper = option.paper;
+			} else {
+				paper = Raphael(option.id, option.size, option.size);
+				option.paper = paper;			
+			}
+			paper.clear();
 		
 			if (option.axis) {
 				paper.path(verticalAxis(option.size)).attr({stroke: 'gray'});
