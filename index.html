@@ -19,6 +19,9 @@
 			});
 		</script>
 		<script type="text/javascript">
+			var feedback = function(msg) {
+				$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
+			}
 			var sceneParser;
 			$(function(){
 				var url = 'peg/scene-grammar.peg'
@@ -30,12 +33,12 @@
 							sceneParser = PEG.buildParser(data);
 						} catch (e) {
 							var msg = "Unable to parse " + url;
-							$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
+							feedback(msg);
 						}
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						var msg = "Unable to load " + url;
-						$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
+						feedback(msg);
 					}
 				});
 			});
