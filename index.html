@@ -14,10 +14,10 @@
 		<script type="text/javascript">
 			$(function(){
 				$("#feedback").addClass("feedback").hide();
-				$("#sample").addClass("sample"); $("#scene").addClass("scene");
+				$("#scene").addClass("scene");
 				$("#viewports").addClass("viewports").children().addClass("viewport");
 				
-				$("#sample").change(function(){
+				$("#sample").addClass("sample").change(function(){
 					$("#scene").val($(this).val());
 				}).change();
 			});
