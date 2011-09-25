@@ -19,14 +19,14 @@
 			});
 		</script>
 		<script type="text/javascript">
+			var sceneParser;
 			$(function(){
-				var url = 'peg/scene-grammer.peg'
+				var url = 'peg/scene-grammar.peg'
 				$.ajax({
 					url: url,
 					dataType: "text",
 					success: function(data){
-						console.log("received data");
-						console.log(data);
+						sceneParser = PEG.buildParser(data);
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						var msg = "Unable to load " + url;
