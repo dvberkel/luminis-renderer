@@ -61,7 +61,19 @@
 			});
 		</script>
 		<script type="text/javascript">
-			$(function(){				
+			$(function(){
+				var url = 'xml/samples.xml';
+				$.ajax({
+					url: url,
+					dataType: "xml",
+					success: function(data) {
+						console.log("received data: " + data);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						feedback("unable to load: " + url);
+					}
+				});
+						
 				$("#sample").change(function(){
 					$("#scene").val($(this).val()).change();
 				}).change();
