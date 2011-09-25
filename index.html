@@ -14,6 +14,7 @@
 		<script type="text/javascript">
 			$(function(){
 				$("#feedback").addClass("feedback").hide();
+				$("#sample").addClass("sample");
 				$("#scene").addClass("scene");
 				$("#viewports").addClass("viewports").children().addClass("viewport");
 			});
@@ -42,6 +43,7 @@
 			});
 		</script>
 		<script type="text/javascript">
+			var renderer;
 			$(function(){
 				var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
@@ -54,8 +56,31 @@
 					{id: "xyz", axis: false, size: 480, viewport: viewport}
 				];
 				
-				var renderer = new SceneRenderer(options);
+				renderer = new SceneRenderer(options);
 				renderer.render(scene);
+			});
+		</script>
+		<script type="text/javascript">
+			$(function(){				
+				$("#sample").change(function(){
+					$("#scene").val($(this).val()).change();
+				}).change();
+				$("#scene").change(function(){
+					if (sceneParser) {
+						if (renderer) {
+							try {
+								var scene = sceneParser.parse($(this).val());
+								renderer.render(scene);
+							} catch(e) {
+								feedback("Error parsing sample: " + e.message);
+							}
+						} else {
+							feedback("Unable to use renderer");
+						}
+					} else {
+						feedback("Unable to use sceneParser");
+					};
+				});
 			});
 		</script>
 	</head>
@@ -65,6 +90,10 @@
 			<ul></ul>
 		</div>
 		<div>
+			<select id="sample">
+				<option value="(scene [(0,0,0), (1,0,0)])" selected="true">Default</option>
+				<option value="(scene [(0,0,0), (1,1,0)])">Exotic</option>
+			</select>
 			<textarea id="scene"></textarea>
 		</div>
 		<div id="viewports">
