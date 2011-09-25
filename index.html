@@ -17,14 +17,13 @@
 			$(function(){
 				var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
-				var scale = 70;
-				var center = Vector.create([240,240]);
+				var viewport = viewportTransform(70,Vector.create([240,240]));
 
 				var options = [
-					{id: "xy", axis: true, projection: projection([[1,0,0],[0,1,0]]), viewport: viewportTransform(70,center)}, 
-					{id: "xz", axis: true, projection: projection([[1,0,0],[0,0,1]]), viewport: viewportTransform(70,center)},
-					{id: "yz", axis: true, projection: projection([[0,1,0],[0,0,1]]), viewport: viewportTransform(70,center)},
-					{id: "xyz", axis: false, viewport: viewportTransform(70,center)}
+					{id: "xy", axis: true, projection: projection([[1,0,0],[0,1,0]]), viewport: viewport}, 
+					{id: "xz", axis: true, projection: projection([[1,0,0],[0,0,1]]), viewport: viewport},
+					{id: "yz", axis: true, projection: projection([[0,1,0],[0,0,1]]), viewport: viewport},
+					{id: "xyz", axis: false, viewport: viewport}
 				];
 				
 				var renderer = new SceneRenderer(options);
