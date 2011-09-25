@@ -18,6 +18,23 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
+				var url = 'peg/scene-grammar.peg'
+				$.ajax({
+					url: url,
+					dataType: "text",
+					success: function(data){
+						console.log("received data");
+						console.log(data);
+					},
+					error: function(data){
+						console.log("unable to load " + url);
+						console.log(data);
+					}
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(function(){
 				var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
 				var viewport = viewportTransform(70,Vector.create([240,240]));
