@@ -91,7 +91,7 @@
 								var scene = sceneParser.parse($(this).val());
 								renderer.render(scene);
 							} catch(e) {
-								feedback("Error parsing sample: " + e.message);
+								feedback("Error parsing sample on line " + e.line + " column " + e.column + ": " + e.message);
 							}
 						} else {
 							feedback("Unable to use renderer");
