@@ -23,6 +23,13 @@
 			var feedback = function(msg) {
 				$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
 			}
+			var time = function(callback, msg) {
+				msg = msg || "";
+				var start = new Date();
+				callback();
+				var stop = new Date();
+				console.log(msg + (stop.getTime() - start.getTime()));
+			}
 			var sceneParser;
 			$(function(){
 				var url = 'peg/scene-grammar.peg'
@@ -88,8 +95,10 @@
 					if (sceneParser) {
 						if (renderer) {
 							try {
-								var scene = sceneParser.parse($(this).val());
-								renderer.render(scene);
+								var option = $(this);
+								var scene;
+								time(function(){scene = sceneParser.parse(option.val());}, "Parsing phase: ");
+								time(function(){renderer.render(scene);}, " Render phase: ");
 							} catch(e) {
 								feedback("Error parsing sample on line " + e.line + " column " + e.column + ": " + e.message);
 							}
