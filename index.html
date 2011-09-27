@@ -28,7 +28,7 @@
 				var start = new Date();
 				callback();
 				var stop = new Date();
-				console.log((stop.getTime() - start.getTime()));
+				console.log(msg + (stop.getTime() - start.getTime()));
 			}
 			var sceneParser;
 			$(function(){
@@ -97,8 +97,8 @@
 							try {
 								var option = $(this);
 								var scene;
-								time(function(){scene = sceneParser.parse(option.val());});
-								time(function(){renderer.render(scene);});
+								time(function(){scene = sceneParser.parse(option.val());}, "Parsing phase: ");
+								time(function(){renderer.render(scene);}, " Render phase: ");
 							} catch(e) {
 								feedback("Error parsing sample on line " + e.line + " column " + e.column + ": " + e.message);
 							}
