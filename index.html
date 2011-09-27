@@ -23,11 +23,12 @@
 			var feedback = function(msg) {
 				$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
 			}
-			var time = function(callback) {
+			var time = function(callback, msg) {
+				msg = msg || "";
 				var start = new Date();
 				callback();
 				var stop = new Date();
-				console.log(stop.getMilliseconds() - start.getMilliseconds());
+				console.log((stop.getTime() - start.getTime()));
 			}
 			var sceneParser;
 			$(function(){
