@@ -10,7 +10,7 @@ if __name__ == '__main__':
 	pointsPerTurn = 10
 	numberOfTurns = 5
 	numberOfPoints = pointsPerTurn * numberOfTurns
-	angle = numberOfTurns * 2 * math.pi / numberOfPoints
+	angle = numberOfTurns * 2 * math.pi / math.sqrt( pointsPerTurn ** 2 + 1)
 	dz = 2.0 / numberOfPoints
 	
 	accumulator = ""
