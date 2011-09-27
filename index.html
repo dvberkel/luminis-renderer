@@ -22,6 +22,7 @@
 		<script type="text/javascript">
 			function feedback(msg) {
 				if ($("#feedback").is(":visible")) {
+					if (feedback.timeout) { clearTimeout(feedback.timeout); }
 				} else {
 					$("#feedback ul").empty();
 				}
