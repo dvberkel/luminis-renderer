@@ -21,7 +21,11 @@
 		</script>
 		<script type="text/javascript">
 			var feedback = function(msg) {
-				$("#feedback ul").append("<li>" + msg + "</li>").parent().show();
+				if ($("#feedback").is(":visible")) {
+				} else {
+					$("#feedback ul").empty();
+				}
+				$("#feedback ul").append("<li>" + msg + "</li>").parent().show('fast');
 			}
 			var time = function(callback, msg) {
 				msg = msg || "";
