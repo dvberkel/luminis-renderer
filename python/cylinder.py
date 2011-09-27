@@ -5,14 +5,14 @@ import string
 import sys
 
 sceneTemplate = "(scene [{0}])"
-pointTemplate = "({0:f}, {1:f}, {2:f}), "
+pointTemplate = "({0:f},{1:f},{2:f}), "
 
 if __name__ == '__main__':
 	pointsPerTurn = int(sys.argv[1])
 	numberOfTurns = int(sys.argv[2])
 	
 	numberOfPoints = pointsPerTurn * numberOfTurns
-	angle = numberOfTurns * 2 * math.pi / math.sqrt( pointsPerTurn ** 2 + 1)
+	angle = 2 * math.pi / math.sqrt( pointsPerTurn ** 2 + 1)
 	dz = 2.0 / numberOfPoints
 	
 	accumulator = ""
