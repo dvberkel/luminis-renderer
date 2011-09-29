@@ -21,7 +21,7 @@
 			});
 		</script>
 		<script type="text/javascript">
-			$(function(){
+			(function(){
 				var url = 'peg/scene-grammar.peg'
 				$.ajax({
 					url: url,
@@ -37,7 +37,7 @@
 						feedback("Unable to load " + url);
 					}
 				});
-			});
+			})();
 		</script>
 		<script type="text/javascript">
 			var renderer;
