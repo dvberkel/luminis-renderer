@@ -1,4 +1,4 @@
-function feedback(msg) {
+window.feedback = function(msg) {
 	if ($("#feedback").is(":visible")) {
 		if (feedback.timeout) { clearTimeout(feedback.timeout); }
 	} else {
@@ -8,7 +8,7 @@ function feedback(msg) {
 		feedback.timeout = setTimeout(function(){$("#feedback").hide('slow')},5000);
 	});
 }
-var time = function(callback, msg) {
+window.time = function(callback, msg) {
 	msg = msg || "";
 	var start = new Date();
 	callback();
