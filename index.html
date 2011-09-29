@@ -10,6 +10,7 @@
 		<script src="js/raphael-min.js"></script>
 		<script src="js/sylvester.js"></script>
 		<script src="js/peg-0.6.2.js"></script>
+		<script src="js/utils.js"></script>
 		<script src="js/luminis-renderer.js"></script>
 		<script type="text/javascript">
 			$(function(){
@@ -20,23 +21,6 @@
 			});
 		</script>
 		<script type="text/javascript">
-			function feedback(msg) {
-				if ($("#feedback").is(":visible")) {
-					if (feedback.timeout) { clearTimeout(feedback.timeout); }
-				} else {
-					$("#feedback ul").empty();
-				}
-				$("#feedback ul").append("<li>" + msg + "</li>").parent().show('fast', function(){
-					feedback.timeout = setTimeout(function(){$("#feedback").hide('slow')},5000);
-				});
-			}
-			var time = function(callback, msg) {
-				msg = msg || "";
-				var start = new Date();
-				callback();
-				var stop = new Date();
-				console.log(msg + (stop.getTime() - start.getTime()));
-			}
 			$(function(){
 				var url = 'peg/scene-grammar.peg'
 				$.ajax({
