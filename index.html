@@ -37,7 +37,6 @@
 				var stop = new Date();
 				console.log(msg + (stop.getTime() - start.getTime()));
 			}
-			var sceneParser;
 			$(function(){
 				var url = 'peg/scene-grammar.peg'
 				$.ajax({
@@ -45,7 +44,7 @@
 					dataType: "text",
 					success: function(data){
 						try {
-							sceneParser = PEG.buildParser(data);
+							window.sceneParser = PEG.buildParser(data);
 						} catch (e) {
 							feedback("Unable to parse " + url + ": " + e.message);
 						}
