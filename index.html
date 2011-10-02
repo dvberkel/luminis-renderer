@@ -67,14 +67,18 @@
 					var normal = camera.x(-1).toUnitVector();
 					var anchor = camera.add(normal.x(distance));
 					var viewPlane = Plane.create(anchor, normal);
-					var a = normal.e(1); var b = normal.e(2); var c = normal.e(3);
-					var o1 = Vector.create([-b/a, 1, 0]); // Only if a != 0;
-					var x = o1.e(1);
-					var o2 = Vector.create([-c/(a-b*x), x*c/(a-b*x), 1]);
+					var orthogonals = function(normal) {
+						var a = normal.e(1); var b = normal.e(2); var c = normal.e(3);
+						var o1 = Vector.create([-b/a, 1, 0]); // Only if a != 0;
+						var x = o1.e(1);
+						var o2 = Vector.create([-c/(a-b*x), x*c/(a-b*x), 1]);
+						return [o1, o2];
+					}
+					o = orthogonals(normal);
 					return function(v) {
 						var line = Line.create(v, camera);
 						var point = viewPlane.intersectionWith(line);
-						return Vector.create([o1.dot(point), o2.dot(point)]);
+						return Vector.create([o[0].dot(point), o[1].dot(point)]);
 					};
 				};
 				var p = perspective(Vector.create([-3,2,1]),1);
