@@ -62,12 +62,13 @@
 				var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
 				var viewport = viewportTransform(70,Vector.create([240,240]));
+				var p = perspective(Vector.create([0,0,10]),1);
 
 				var options = [
 					{id: "xy", axis: true, size: 480, projection: projection([[1,0,0],[0,1,0]]), viewport: viewport}, 
 					{id: "xz", axis: true, size: 480, projection: projection([[1,0,0],[0,0,1]]), viewport: viewport},
 					{id: "yz", axis: true, size: 480, projection: projection([[0,1,0],[0,0,1]]), viewport: viewport},
-					{id: "xyz", axis: false, size: 480, viewport: viewport}
+					{id: "xyz", axis: false, size: 480, projection: p, viewport: viewport}
 				];
 				
 				renderer = new SceneRenderer(options);
