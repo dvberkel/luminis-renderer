@@ -62,12 +62,31 @@
 				var scene = new Scene3D().add(Vector.create([0,0,0])).add(Vector.create([1,0,0]));
 				
 				var viewport = viewportTransform(70,Vector.create([240,240]));
+				
+				var camera = Vector.create([10,10,10]);
+				var distance = 1;
+				var normal = camera.x(-1).toUnitVector();
+				var anchor = camera.add(normal.x(distance));
+				var viewPlane = Plane.create(anchor, normal);
+				var a = normal.e(1); var b = normal.e(2); var c = normal.e(3);
+				var o1 = Vector.create([-b/a, 1, 0]); // Only if a != 0;
+				var x = o1.e(1);
+				var o2 = Vector.create([-c/(a-b*x), x*c/(a-b*x), 1]);
+				console.log(normal.dot(o1));
+				console.log(normal.dot(o2));
+				console.log(o1.dot(o2));
+				var perspective = function(v) {
+					var line = Line.create(v, camera);
+					var point = viewPlane.intersectionWith(line).add(anchor.multiply(-1));
+					return Vector.create([o1.dot(point), o2.dot(point)]);
+				};
+				console.log(perspective(Vector.create([0,0,0])));
 
 				var options = [
 					{id: "xy", axis: true, size: 480, projection: projection([[1,0,0],[0,1,0]]), viewport: viewport}, 
 					{id: "xz", axis: true, size: 480, projection: projection([[1,0,0],[0,0,1]]), viewport: viewport},
 					{id: "yz", axis: true, size: 480, projection: projection([[0,1,0],[0,0,1]]), viewport: viewport},
-					{id: "xyz", axis: false, size: 480, viewport: viewport}
+					{id: "xyz", axis: false, size: 480, projection: perspective, viewport: viewport}
 				];
 				
 				renderer = new SceneRenderer(options);
