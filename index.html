@@ -83,7 +83,7 @@
 						}
 						return [o1, o2];
 					}
-					o = orthogonals(normal);
+					var o = orthogonals(normal);
 					return function(v) {
 						var line = Line.create(v, camera);
 						var point = viewPlane.intersectionWith(line);
